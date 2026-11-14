@@ -1,0 +1,35 @@
+# moon
+.moon/cache/
+.moon/docker/
+
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.example.tfvars
+
+# Segredos e ambiente (nunca versionar)
+.env
+.env.*
+!.env.example
+*.pem
+*-key.json
+credentials*.json
+
+# SO / editores
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

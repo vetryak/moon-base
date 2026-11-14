@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://moonrepo.dev/schemas/template.json
+#
+# Uso:  moon generate slice
+#       moon generate slice -- --dominio pedidos --feature checkout --linguagem python
+title: "Slice (VSA)"
+description: "Cria uma fatia vertical em slices/<dominio>/<feature> com moon.yml e testes."
+destination: "slices/[dominio]/[feature]"
+
+variables:
+  dominio:
+    type: "string"
+    default: ""
+    required: true
+    prompt: "Domínio (kebab-case, ex.: pedidos)"
+    order: 1
+  feature:
+    type: "string"
+    default: ""
+    required: true
+    prompt: "Feature (kebab-case, ex.: checkout)"
+    order: 2
+  linguagem:
+    type: "enum"
+    default: "python"
+    values: ["python", "typescript", "unknown"]
+    prompt: "Linguagem principal"
+    order: 3
+  descricao:
+    type: "string"
+    default: "Descreva o objetivo desta slice."
+    prompt: "Descrição curta"
+    order: 4

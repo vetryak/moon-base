@@ -1,0 +1,8 @@
+---
+skip: {{ linguagem != "python" }}
+---
+import {{ feature | snake_case }}
+
+
+def test_importa():
+    assert {{ feature | snake_case }} is not None

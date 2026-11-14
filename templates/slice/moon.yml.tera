@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://moonrepo.dev/schemas/project.json
+id: "{{ dominio }}-{{ feature }}"
+language: "{{ linguagem }}"
+layer: "library"
+tags: ["slice", "dominio-{{ dominio }}"]
+
+project:
+  title: "{{ dominio }}/{{ feature }}"
+  description: "{{ descricao }}"
