@@ -8,11 +8,11 @@ clientes: mesma estrutura, mesmos nomes de tarefas e o mesmo CI em todo lugar.
 ## O que vem pronto
 
 - **Workspace moon v2** com descoberta de projetos pelo layout VSA, VCS git/GitHub e cache do pipeline.
-- **Tarefas herdadas** por linguagem e por tag: Python (ruff, pytest), Node/TypeScript (scripts do `package.json`), Terraform (fmt, validate) e containers (docker build).
+- **Tarefas herdadas** por linguagem e por tag: `check-readme` em todos os projetos, Python (ruff via `uvx`, pytest via `uv run`), Node/TypeScript (scripts do `package.json`), Terraform (fmt, validate) e containers (docker build).
 - **Gerador de slices**: `moon generate slice` cria `slices/<dominio>/<feature>` já com `moon.yml`, README e testes.
 - **CI base** (`.github/workflows/moon-ci.yml`) rodando `moon ci`, que executa só o que foi afetado.
 - **Script de adoção** (`scripts/adopt.sh`) para aplicar o template em qualquer repositório.
-- **Instruções multi-LLM**: `AGENTS.md` como fonte única, com `CLAUDE.md`, Gemini e Copilot apontando para ele.
+- **Instruções multi-LLM**: `AGENTS.md` como fonte única, com `CLAUDE.md`, `GEMINI.md` e Copilot apontando para ele.
 
 ## Estrutura
 
@@ -38,14 +38,15 @@ moon-base/
 ├── docs/                    # convenções, reuso, agentes, ADRs
 ├── .prototools              # moon 2.6.5, node 22.11.0
 ├── AGENTS.md                # instruções para agentes de IA (fonte única)
-└── CLAUDE.md                # importa AGENTS.md
+├── CLAUDE.md                # importa AGENTS.md
+└── GEMINI.md                # aponta para AGENTS.md
 ```
 
 ## Começando
 
 Pré-requisitos: [proto](https://moonrepo.dev/proto) (ou moon 2.6.5 instalado
 por outro meio, como `npm i -g @moonrepo/cli@2.6.5`). Para as tarefas Python,
-`ruff` e `pytest` no PATH.
+[uv](https://docs.astral.sh/uv) no PATH.
 
 ```bash
 proto use                          # instala as versões do .prototools
@@ -83,7 +84,7 @@ Detalhes em [docs/reuso.md](docs/reuso.md).
 | Pastas e ids | kebab-case; slice = `<dominio>-<feature>` |
 | `layer` | `application` (apps), `library` (slices, libs), `configuration` (infra), `tool` (tools) |
 | Tags | `slice`, `dominio-<nome>`, `terraform`, `container`, `cliente-<nome>`, `demo` |
-| Tarefas | `lint`, `format-check`, `test`, `typecheck`, `build`, `tf-fmt`, `tf-validate`, `image-build` |
+| Tarefas | `check-readme`, `lint`, `format-check`, `test`, `typecheck`, `build`, `tf-fmt`, `tf-validate`, `image-build` |
 | Toolchain | só `system` no template |
 | Segredos | nunca no repositório; GCP via Workload Identity Federation |
 

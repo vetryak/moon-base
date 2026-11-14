@@ -12,7 +12,7 @@ git clone https://github.com/vetryak/moon-base
 ```
 
 O script copia `.moon/`, `.prototools`, `templates/`, `.editorconfig`, o
-workflow `moon-ci.yml`, os ponteiros multi-LLM (`CLAUDE.md`, `.gemini/`,
+workflow `moon-ci.yml`, os ponteiros multi-LLM (`CLAUDE.md`, `GEMINI.md`, `.gemini/`,
 `.github/copilot-instructions.md`) e os READMEs do layout, e grava a versão aplicada em
 `.moon/moon-base.version`.
 

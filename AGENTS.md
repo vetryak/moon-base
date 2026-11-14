@@ -2,7 +2,8 @@
 
 Instruções para agentes de IA (Claude, Gemini, Codex, Copilot, Cursor e outros)
 que trabalham neste repositório. Este arquivo é a fonte única; `CLAUDE.md`,
-`.gemini/settings.json` e `.github/copilot-instructions.md` apontam para cá.
+`GEMINI.md`, `.gemini/settings.json` e `.github/copilot-instructions.md`
+apontam para cá.
 
 ## O que é este repositório
 
@@ -27,7 +28,7 @@ docs/                    convenções, reuso, agentes, ADRs
 ## Comandos
 
 ```bash
-proto use                                   # instala moon 2.6.5 e node 22.11.0
+proto use                                   # instala moon 2.6.5 e node 22.11.0 (uv à parte)
 moon query projects                         # lista projetos
 moon run exemplo-saudacao:test              # roda uma tarefa
 moon run :lint                              # roda lint em todos os projetos
@@ -43,8 +44,8 @@ moon generate slice -- --dominio x --feature y --linguagem python
    `inheritedBy` nos arquivos de `.moon/tasks/`. Não use sintaxe do moon v1.
 3. **Toolchain `system`** nas tarefas herdadas. Não adicione plugins de
    toolchain aqui (dependem de `ghcr.io`, bloqueado em alguns ambientes).
-4. **Nomes de tarefas padronizados**: `lint`, `format-check`, `format`, `test`,
-   `typecheck`, `build`, `dev`, `tf-fmt`, `tf-validate`, `image-build`.
+4. **Nomes de tarefas padronizados**: `check-readme`, `lint`, `format-check`,
+   `format`, `test`, `typecheck`, `build`, `dev`, `tf-fmt`, `tf-validate`, `image-build`.
    Não renomeie: outros repositórios dependem deles.
 5. **VSA**: uma slice não importa outra slice. Código comum vai para `libs/`
    apenas com dois ou mais consumidores; composição acontece em `apps/`.

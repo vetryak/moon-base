@@ -29,9 +29,6 @@ jobs:
 
       # Ferramentas do toolchain "system" usadas pelas tarefas herdadas.
       # Remova o que o repositório não usar.
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install ruff pytest
+      - uses: astral-sh/setup-uv@v6
 
       - run: moon ci

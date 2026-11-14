@@ -9,6 +9,7 @@ Estas convenções valem para o `moon-base` e para todo repositório que o adota
 |------------|----------|------------------|
 | moon       | 2.6.5    | `.prototools` (e `versionConstraint: ">=2.0.0"` no workspace) |
 | node       | 22.11.0  | `.prototools` |
+| uv         | qualquer recente | PATH/CI (`astral-sh/setup-uv`); ruff via `uvx`, pytest via `uv run` |
 
 Atualize as versões aqui primeiro e propague com `scripts/adopt.sh --force`.
 
@@ -27,9 +28,11 @@ Uma **slice** contém tudo o que a feature precisa: código, testes, contratos
 importa código de outra slice; o que for comum vai para `libs/`, e a composição
 acontece em `apps/`.
 
-Repositórios que não são de código (como o `vetryak-docs-hub`) podem trocar os
-globs de `projects` por algo como `["geral", "clientes/*/moon.yml"]`, mantendo
-as mesmas regras de nomes e tags.
+Repositórios com outro recorte trocam apenas os globs de `projects`, mantendo
+as mesmas regras de nomes, tags e tarefas. Exemplos em uso:
+
+- `vetryak-demos-hub`: `["demos/*/*/moon.yml"]`
+- `vetryak-docs-hub`: `["geral", "clientes/*/moon.yml"]`
 
 ## Nomes
 
@@ -53,18 +56,23 @@ Campos obrigatórios: `id`, `language`, `layer`, `tags`, `project.title`,
 | `cliente-<nome>` | identifica entregas de cliente (repositórios de cliente/docs) |
 | `demo`           | identifica demos (vetryak-demos-hub) |
 
+## Python
+
+Slices Python usam `uv`: o `uv run` cria `.venv/` (ignorada) e `uv.lock`
+(versione o lock junto com o `pyproject.toml`).
+
 ## Tarefas herdadas
 
 | Arquivo                        | Quem herda                    | Tarefas |
 |--------------------------------|-------------------------------|---------|
-| `.moon/tasks/all.yml`          | todos                         | (fileGroups e opções padrão) |
+| `.moon/tasks/all.yml`          | todos                         | check-readme (+ fileGroups e opções padrão) |
 | `.moon/tasks/python.yml`       | `language: python`            | lint, format-check, format, test |
 | `.moon/tasks/node.yml`         | `language: javascript/typescript` | lint, typecheck, test, build, dev |
 | `.moon/tasks/terraform.yml`    | tag `terraform`               | tf-fmt, tf-validate |
 | `.moon/tasks/container.yml`    | tag `container`               | image-build |
 
-Nomes de tarefas são padronizados (`lint`, `test`, `build`, `typecheck`,
-`format-check`) para que `moon ci` e `moon run :test` funcionem igual em todo
+Nomes de tarefas são padronizados (`check-readme`, `lint`, `test`, `build`,
+`typecheck`, `format-check`) para que `moon ci` e `moon run :test` funcionem igual em todo
 repositório. Um projeto pode sobrescrever uma tarefa herdada declarando-a com o
 mesmo nome no seu `moon.yml`.
 

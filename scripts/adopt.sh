@@ -5,7 +5,7 @@
 #   ./scripts/adopt.sh <repo-destino> [--force]
 #
 # Copia: .moon/, .prototools, templates/, .editorconfig, .github/workflows/moon-ci.yml,
-#        CLAUDE.md, .gemini/settings.json, .github/copilot-instructions.md
+#        CLAUDE.md, GEMINI.md, .gemini/settings.json, .github/copilot-instructions.md
 #        e as pastas do layout VSA (apps, slices, libs, infra, tools) com seus READMEs.
 # Não sobrescreve arquivos existentes, a menos que --force seja passado.
 # Registra a versão aplicada em .moon/moon-base.version.
@@ -42,7 +42,7 @@ while IFS= read -r f; do copy "$f"; done < <(
 for f in .prototools .editorconfig .github/workflows/moon-ci.yml; do copy "$f"; done
 
 # Ponteiros multi-LLM (o AGENTS.md é específico de cada repositório e não é copiado)
-for f in CLAUDE.md .gemini/settings.json .github/copilot-instructions.md; do copy "$f"; done
+for f in CLAUDE.md GEMINI.md .gemini/settings.json .github/copilot-instructions.md; do copy "$f"; done
 
 # Layout VSA (apenas READMEs; nenhuma slice de exemplo)
 for d in apps libs infra tools; do copy "$d/README.md"; done
