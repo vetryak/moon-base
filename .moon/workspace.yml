@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://moonrepo.dev/schemas/workspace.json
+#
+# Workspace base da Vetryak (moon v2).
+# Repositórios consumidores podem copiar este arquivo (scripts/adopt.sh) e
+# ajustar apenas `projects`. Veja docs/reuso.md.
+
+versionConstraint: ">=2.0.0"
+
+# Layout VSA (Vertical Slice Architecture):
+#   apps/*            -> pontos de entrada implantáveis (compõem slices)
+#   slices/*/*        -> fatias verticais: <dominio>/<feature>, autocontidas
+#   libs/*            -> código compartilhado de verdade (mínimo possível)
+#   infra/*           -> infraestrutura compartilhada (landing zone, rede, IAM)
+#   tools/*           -> scripts e utilitários internos
+# Só vira projeto moon a pasta que tiver um moon.yml.
+projects:
+  - "apps/*/moon.yml"
+  - "slices/*/*/moon.yml"
+  - "libs/*/moon.yml"
+  - "infra/*/moon.yml"
+  - "tools/*/moon.yml"
+
+vcs:
+  client: "git"
+  provider: "github"
+  defaultBranch: "main"
+
+pipeline:
+  # Limpa automaticamente artefatos antigos do cache local (.moon/cache).
+  autoCleanCache: true
+  cacheLifetime: "7 days"
+
+# Templates para `moon generate <template>` (ex.: moon generate slice)
+generator:
+  templates:
+    - "./templates"

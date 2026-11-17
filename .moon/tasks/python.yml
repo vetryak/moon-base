@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://moonrepo.dev/schemas/tasks.json
+#
+# Tarefas herdadas por projetos com `language: python`.
+# Ferramenta esperada no PATH: uv (https://docs.astral.sh/uv).
+# ruff roda via `uvx` (sem instalação prévia); pytest roda via `uv run`, no
+# ambiente do próprio projeto (dependências do pyproject.toml).
+
+inheritedBy:
+  languages: ["python"]
+
+tasks:
+  lint:
+    description: "Análise estática com ruff"
+    command: "uvx ruff check ."
+    toolchains: ["system"]
+    inputs: ["@group(sources)", "@group(tests)", "@group(configs)"]
+
+  format-check:
+    description: "Verifica formatação com ruff"
+    command: "uvx ruff format --check ."
+    toolchains: ["system"]
+    inputs: ["@group(sources)", "@group(tests)"]
+
+  format:
+    description: "Formata o código com ruff (local)"
+    command: "uvx ruff format ."
+    toolchains: ["system"]
+    options:
+      cache: false
+      runInCI: false
+
+  test:
+    description: "Testes com pytest"
+    command: "uv run --with pytest pytest -q"
+    toolchains: ["system"]
+    inputs: ["@group(sources)", "@group(tests)", "@group(configs)"]

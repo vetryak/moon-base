@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://moonrepo.dev/schemas/tasks.json
+#
+# Herdado por TODOS os projetos. Mantenha aqui apenas o que vale para
+# qualquer linguagem: grupos de arquivos, opções padrão e check-readme.
+
+fileGroups:
+  configs:
+    - "moon.yml"
+    - "*.{json,toml,yml,yaml}"
+  sources:
+    - "src/**/*"
+  tests:
+    - "tests/**/*"
+  docs:
+    - "README.md"
+    - "docs/**/*"
+  infra:
+    - "infra/**/*"
+    - "**/*.tf"
+
+taskOptions:
+  # Garante que o comando rode via shell (permite &&, pipes, variáveis).
+  shell: true
+
+tasks:
+  check-readme:
+    description: "Garante que todo projeto tenha um README.md"
+    script: 'test -s README.md || { echo "README.md ausente ou vazio em $project"; exit 1; }'
+    toolchains: ["system"]
+    inputs: ["README.md"]

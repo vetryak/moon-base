@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://moonrepo.dev/schemas/project.json
+#
+# Slice de exemplo: domínio "exemplo", feature "saudacao".
+# Serve como referência viva das convenções. Pode ser apagada no repositório
+# consumidor (ou mantida como smoke test do template).
+
+id: "exemplo-saudacao"
+language: "python"
+layer: "library"
+stack: "backend"
+tags: ["slice", "dominio-exemplo"]
+
+project:
+  title: "Exemplo: saudação"
+  description: "Slice mínima que demonstra o layout VSA e as tarefas herdadas."
+  owner: "vetryak/arquitetura"

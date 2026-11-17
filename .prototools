@@ -1,0 +1,9 @@
+# Versões fixadas das ferramentas (gerenciadas pelo proto: https://moonrepo.dev/proto)
+# Instale tudo com: proto use
+moon = "2.6.5"
+node = "22.11.0"
+
+# Descomente conforme a necessidade do repositório consumidor:
+# python = "3.12.7"
+# uv = "0.5.4"
+# terraform = "1.9.8"

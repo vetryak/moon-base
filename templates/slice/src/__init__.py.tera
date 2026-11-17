@@ -1,0 +1,5 @@
+---
+skip: {{ linguagem != "python" }}
+to: src/{{ feature | snake_case }}/__init__.py
+---
+"""{{ dominio }}/{{ feature }}: {{ descricao }}"""

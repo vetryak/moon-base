@@ -1,0 +1,10 @@
+# {{ dominio }}/{{ feature }}
+
+{{ descricao }}
+
+## Tarefas
+
+```bash
+moon run {{ dominio }}-{{ feature }}:test
+moon run {{ dominio }}-{{ feature }}:lint
+```
